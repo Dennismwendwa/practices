@@ -1,0 +1,99 @@
+#!/usr/bin/python3
+
+import sys
+import math
+import random
+import time
+import resource
+
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def pollard_rho(n):
+    if n % 2 == 0:
+        return 2
+
+    x = random.randint(1, n - 1)
+    y = x
+    c = random.randint(1, n - 1)
+    d = 1
+
+    def f(x):
+        return (x ** 2 + c) % n
+
+    while d == 1:
+        x = f(x)
+        y = f(f(y))
+        d = gcd(abs(x - y), n)
+
+    return d
+
+def factorize(n):
+    factors = []
+
+    while n > 1:
+        if is_prime(n):
+            factors.append(n)
+            break
+
+        d = pollard_rho(n)
+        factors.extend(factorize(d))
+        n //= d
+
+    return factors
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+
+    for i in range(5, int(math.sqrt(n)) + 1, 6):
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+
+    return True
+
+def format_time(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    return f"{hours:02.0f}h{minutes:02.0f}m{seconds:06.3f}s"
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python factorize.py <file>")
+        return
+
+    filename = sys.argv[1]
+
+    with open(filename, "r") as file:
+        numbers = file.readlines()
+
+    start_time = time.time()
+
+    for number in numbers:
+        n = int(number.strip())
+        factors = factorize(n)
+        factors_str = "*".join(str(f) for f in factors)
+        print(f"{n}={factors_str}")
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    # Get CPU time
+    ru = resource.getrusage(resource.RUSAGE_SELF)
+    user_time = ru.ru_utime
+    sys_time = ru.ru_stime
+
+    print("\nTime taken:")
+    print(f"real    {format_time(elapsed_time)}")
+    print(f"user    {format_time(user_time)}")
+    print(f"sys     {format_time(sys_time)}")
+
+if __name__ == "__main__":
+    main()

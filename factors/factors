@@ -1,0 +1,48 @@
+#!/usr/bin/python3
+
+import sys
+
+import sys
+import time
+
+
+def factorize(n):
+    factors = []
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        return
+
+    input_file = sys.argv[1]
+    try:
+        with open(input_file, 'r') as file:
+            start_time = time.time()
+            for line in file:
+                n = int(line)
+                factors = factorize(n)
+                pairs = []
+                for i in range(len(factors) // 2):
+                    pairs.append(f"{factors[i]}*{factors[-i-1]}")
+                factorization = "=".join(pairs)
+                print(f"{n}={factorization}")
+            end_time = time.time()
+            execution_time = end_time - start_time
+            print(f"\nExecution time: {execution_time:.6f} seconds")
+    except FileNotFoundError:
+        print(f"File '{input_file}' not found.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,73 @@
+# notes
+
+Reusability:
+Functions allow you to define reusable blocks of code that can be called multiple
+times from different parts of your program.
+Instead of duplicating code, you can encapsulate it within a function and call
+it whenever needed. This promotes code reuse, minimizes redundancy,
+and makes your code easier to maintain and update.
+
+Modularity:
+Functions enable you to break down complex tasks into smaller, more manageable
+chunks. By dividing your program into smaller functions, you improve its overall
+structure and readability. This modular approach enhances code organization,
+making it easier to understand, debug, and collaborate on.
+
+Abstraction:
+Functions provide a layer of abstraction, allowing you to hide the implementation
+details and focus on the functionality. You can create functions with well-defined
+inputs (parameters) and outputs (return values), making it easier to interact
+with and understand the code. This abstraction simplifies the overall complexity
+of your program, enhancing its readability and maintainability.
+
+Code organization:
+Functions facilitate a structured approach to programming. By logically grouping
+related tasks into functions, you can organize your code into meaningful sections.
+This makes it easier to locate specific functionality, understand the flow of your
+program, and make changes or improvements in the future.
+
+Code readability and maintainability:
+Functions improve code readability by providing descriptive names for specific
+tasks or operations. When you divide your program into smaller functions,
+each with a specific purpose, it becomes easier to understand the intention and
+functionality of each part. This readability makes debugging and maintaining the
+code simpler, reducing the chances of introducing errors.
+
+Code testing:
+Functions enable easier testing of specific units of code. By isolating
+functionality within functions, you can write tests that focus on specific inputs
+and outputs. This makes it easier to verify the correctness of individual functions
+ensuring that they work as expected before integrating them into a larger program.
+
+
+Functions that print output:
+
+These functions are primarily used for displaying information to the user
+or providing visual feedback on the program's progress.
+
+They typically use the print() function or similar methods to display messages,
+results, or intermediate steps.
+
+Functions that only print output do not provide a way to capture or use the
+displayed information in subsequent parts of the program.
+
+
+
+Functions that return a value:
+
+These functions are designed to perform a calculation, process data,
+or perform some operation and provide the result back to the caller.
+
+They use the return statement to send a value or object back to the
+part of the program that invoked the function.
+
+Functions that return a value allow the result to be stored in a variable,
+used in expressions, or passed as an argument to other functions.
+
+
+Their primary role is to produce a specific output or perform a computation
+that can be used and manipulated by other parts of the program.
+
+Their primary role is to communicate information to the user or assist in
+debugging and monitoring the program's execution.
+
